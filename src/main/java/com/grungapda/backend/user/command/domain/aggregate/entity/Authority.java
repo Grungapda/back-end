@@ -15,6 +15,7 @@ public class Authority extends AuditingFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long authNo;
 
     @Column(nullable = false)
@@ -26,16 +27,20 @@ public class Authority extends AuditingFields {
     @Column(nullable = false)
     private String refreshToken;
 
+    @Column
+    private Boolean refreshTokenIsDeleted;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no")
     private User user;
 
     @Builder
-    public Authority(Long authNo, String tokenType, String accessToken, String refreshToken, User user) {
+    public Authority(Long authNo, String tokenType, String accessToken, String refreshToken, Boolean refreshTokenIsDeleted, User user) {
         this.authNo = authNo;
         this.tokenType = tokenType;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+        this.refreshTokenIsDeleted = refreshTokenIsDeleted;
         this.user = user;
     }
 
@@ -55,10 +60,18 @@ public class Authority extends AuditingFields {
         this.user = user;
     }
 
+    public void setRefreshTokenIsDeleted(Boolean refreshTokenIsDeleted) {
+        this.refreshTokenIsDeleted = refreshTokenIsDeleted;
+    }
+
     //업데이트 토큰
     public void updateToken(String tokenType, String accessToken, String refreshToken) {
         this.tokenType = tokenType;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+    }
+
+    public void deleteRefreshToken(Boolean refreshTokenIsDeleted) {
+        this.refreshTokenIsDeleted = true;
     }
 }

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,13 +31,17 @@ public class User extends AuditingFields {
     @Column
     private Boolean userIsDeleted;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Authority> authorities;
+
     @Builder
-    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted) {
+    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted, List<Authority> authorities) {
         this.userNo = userNo;
         this.userEmail = userEmail;
         this.userPwd = userPwd;
         this.userNickName = userNickName;
         this.userIsDeleted = userIsDeleted;
+        this.authorities = authorities;
     }
 
     public void setUserPwd(String userPwd) {

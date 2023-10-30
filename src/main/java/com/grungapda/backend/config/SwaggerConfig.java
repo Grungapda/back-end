@@ -37,7 +37,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.grungapda.backend"))
                 .paths(PathSelectors.any())
                 .build()
-                .useDefaultResponseMessages(false);
+                .useDefaultResponseMessages(true);
     }
 
     private Set<String> getConsumeContentTypes() {

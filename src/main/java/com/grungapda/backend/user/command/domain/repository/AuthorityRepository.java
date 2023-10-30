@@ -1,5 +1,6 @@
 package com.grungapda.backend.user.command.domain.repository;
 
+import com.grungapda.backend.user.command.application.dto.login.LogoutResponse;
 import com.grungapda.backend.user.command.domain.aggregate.entity.Authority;
 import com.grungapda.backend.user.command.domain.aggregate.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,7 @@ import java.util.Optional;
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
     Optional<Authority> findByUser(User user);
+
+    Optional<Authority> findByRefreshToken(String refreshToken);
+
 }

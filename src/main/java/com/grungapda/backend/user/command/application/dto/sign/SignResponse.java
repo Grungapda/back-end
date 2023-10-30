@@ -1,9 +1,9 @@
 package com.grungapda.backend.user.command.application.dto.sign;
 
+import com.grungapda.backend.user.command.domain.aggregate.entity.User;
 import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignResponse {
 
@@ -12,9 +12,9 @@ public class SignResponse {
     private String userNickname;
 
     @Builder
-    public SignResponse(Long userNo, String userEmail, String userNickname) {
-        this.userNo = userNo;
-        this.userEmail = userEmail;
-        this.userNickname = userNickname;
+    public SignResponse(User user) {
+        this.userNo = user.getUserNo();
+        this.userEmail = user.getUserEmail();
+        this.userNickname = user.getUserNickName();
     }
 }

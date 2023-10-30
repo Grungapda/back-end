@@ -49,9 +49,17 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() //단순 접근
-                .antMatchers("/api/v1/authentication/**").permitAll() //로그인
-                .antMatchers("/api/v1/members/**").permitAll() //회원
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // 단순 접근
+                .antMatchers("/api/v1/authentication/**").permitAll() // 로그인
+                .antMatchers("/api/v1/users/**").permitAll() // 회원
+                .antMatchers("/api/v1/users/{userNo}**").permitAll()
+                .antMatchers("/api/v1/users/email/{userEmail}/check/**").permitAll()
+                .antMatchers("/api/v1/users/info/{userNo}**").permitAll()
+                .antMatchers("/api/v1/users/nickname/{userNickname}/check/**").permitAll()
+                .antMatchers("/api/v1/users/pwd/{userNo}**").permitAll()
+                .antMatchers("/api/v1/authentication/login/**").permitAll()
+                .antMatchers("/api/v1/authentication/logout/**").permitAll()
+                .antMatchers("/api/v1/authentication/new/**").permitAll()
                 .antMatchers(
                         "/swagger-ui/**",
                         "/v2/api-docs",

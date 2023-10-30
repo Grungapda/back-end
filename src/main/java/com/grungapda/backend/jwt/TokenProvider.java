@@ -1,5 +1,6 @@
 package com.grungapda.backend.jwt;
 
+import com.grungapda.backend.user.command.application.dto.login.LogoutResponse;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -18,6 +19,7 @@ import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -27,7 +29,7 @@ public class TokenProvider implements InitializingBean {
     private static final String AUTHORITIES_KEY = "auth";
     private final String secret;
     private final long tokenValidityInMilliseconds; // 엑세스토큰
-    private final long refreshTokenValidityInMilliseconds; //리프레쉬 토큰
+    private final long refreshTokenValidityInMilliseconds; // 리프레쉬 토큰
     private Key key;
 
 
@@ -40,7 +42,7 @@ public class TokenProvider implements InitializingBean {
     }
 
     @Override
-    public void afterPropertiesSet(){
+    public void afterPropertiesSet() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         this.key= Keys.hmacShaKeyFor(keyBytes);
     }
@@ -63,7 +65,7 @@ public class TokenProvider implements InitializingBean {
                 .compact();
     }
 
-    public String createRefreshToken(){
+    public String createRefreshToken() {
         Date now = new Date();
         Date validity = new Date(now.getTime() + this.refreshTokenValidityInMilliseconds);
 
@@ -74,8 +76,18 @@ public class TokenProvider implements InitializingBean {
                 .compact();
     }
 
+    public String deleteRefreshToken(LogoutResponse logoutResponse, String refreshToken) {
+        if (!validateToken(refreshToken)) {
+            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+        }
+        Authentication authentication = getAuthentication(refreshToken);
+        deleteRefreshToken(logoutResponse, refreshToken);
+
+        return deleteRefreshToken(logoutResponse, refreshToken);
+    }
+
     //리프레시 토큰을 이용한 엑세스 토큰 재발급
-    public String renewAccessTokenUsingRefreshToken(String refreshToken) {
+    public String newAccessToken(String refreshToken) {
         // 리프레시 토큰의 유효성 검사
         if (!validateToken(refreshToken)) {
             throw new RuntimeException("로그인 정보가 만료되었습니다.");
