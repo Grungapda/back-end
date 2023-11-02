@@ -1,6 +1,6 @@
 package com.grungapda.backend.jwt;
 
-import com.grungapda.backend.userMusician.command.application.dto.login.LogoutResponse;
+import com.grungapda.backend.user.command.application.dto.login.LogoutResponse;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
