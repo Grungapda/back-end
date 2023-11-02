@@ -1,6 +1,6 @@
 package com.grungapda.backend.jwt;
 
-import com.grungapda.backend.user.command.application.dto.login.LogoutResponse;
+import com.grungapda.backend.userMusician.command.application.dto.login.LogoutResponse;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -19,7 +19,6 @@ import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
