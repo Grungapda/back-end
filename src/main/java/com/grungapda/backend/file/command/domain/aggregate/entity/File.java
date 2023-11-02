@@ -1,7 +1,7 @@
 package com.grungapda.backend.file.command.domain.aggregate.entity;
 
 import com.grungapda.backend.common.AuditingFields;
-import com.grungapda.backend.user.command.domain.aggregate.entity.User;
+import com.grungapda.backend.userMusician.command.domain.aggregate.entity.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
