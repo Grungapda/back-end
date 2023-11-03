@@ -56,6 +56,12 @@ public class TokenProvider implements InitializingBean {
         long now = (new Date()).getTime();
         Date validity = new Date(now + this.tokenValidityInMilliseconds);
 
+        Claims claims = Jwts.claims()
+                .setSubject(authentication.getName())
+                .setExpiration(validity);
+
+        claims.put(AUTHORITIES_KEY, authorities);
+
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities) // 정보 저장
