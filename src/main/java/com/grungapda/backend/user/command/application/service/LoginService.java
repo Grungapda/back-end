@@ -67,6 +67,10 @@ public class LoginService {
         resultMap.put("loginResponse", LoginResponse.builder()
                 .userNo(user.getUserNo())
                 .userNickname(user.getUserNickName())
+                .musician(user.getMusician())
+                .sessionType(user.getSessionType())
+                .genre(user.getGenre())
+                .mood(user.getMood())
                 .authority(Collections.singletonList(authResponse))
                 .build());
         resultMap.put("refreshToken", refreshToken);
