@@ -27,10 +27,10 @@ public class SignRequest {
 
     private Boolean musician;
     
-    private int sessionType;
+    private Integer sessionType;
 
-    private int genre;
+    private Integer genre;
 
-    private int mood;
+    private Integer mood;
 
 }

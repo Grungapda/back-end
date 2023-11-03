@@ -35,19 +35,19 @@ public class User extends AuditingFields {
     private Boolean musician;
 
     @Column
-    private int sessionType;
+    private Integer sessionType;
 
     @Column
-    private int genre;
+    private Integer genre;
 
     @Column
-    private int mood;
+    private Integer mood;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Authority> authorities;
 
     @Builder
-    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted,Boolean musician, int sessionType, int genre, int mood , List<Authority> authorities) {
+    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted,Boolean musician, Integer sessionType, Integer genre, Integer mood , List<Authority> authorities) {
         this.userNo = userNo;
         this.userEmail = userEmail;
         this.userPwd = userPwd;
@@ -68,7 +68,7 @@ public class User extends AuditingFields {
         this.userNickName = userNickName;
     }
 
-    public void deleteUser(String userEmail, String userNickName, Boolean userIsDeleted,Boolean musician,int sessionType, int genre, int mood ) {
+    public void deleteUser(String userEmail, String userNickName, Boolean userIsDeleted,Boolean musician,Integer sessionType, Integer genre, Integer mood ) {
         this.userEmail = userEmail;
         this.userNickName = userNickName;
         this.userIsDeleted = userIsDeleted;
