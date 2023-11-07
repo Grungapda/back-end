@@ -27,6 +27,7 @@ out/
 !**/src/test/**/out/
 application.yml
 application-jwt.yml
+application-aws.yml
 src/main/resources/application.yml
 src/main/resources/application-jwt.yml
 
