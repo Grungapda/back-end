@@ -26,6 +26,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.modelmapper:modelmapper:3.0.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
@@ -40,8 +41,13 @@ dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws
-    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+    testImplementation 'io.findify:s3mock_2.13:0.2.6'
+
+
+//    implementation 'com.github.downgoon:marvin:1.5.5'
+//    implementation 'com.github.downgoon:MarvinPlugins:1.5.5'
 
 }
 
