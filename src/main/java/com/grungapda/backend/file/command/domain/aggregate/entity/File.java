@@ -29,19 +29,30 @@ public class File extends AuditingFields {
     private Boolean filesIsDeleted;
 
     @Column
-    private String filePath;
+    private String imageFilePath;
+
+    @Column
+    private String musicFilePath;
+
+    @Column
+    private String midFilePath;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no")
     private User user;
 
     @Builder
-    public File(Long fileNo, String originFileName, String fileName, Boolean filesIsDeleted, String filePath, User user) {
+    public File(Long fileNo, String originFileName, String fileName, Boolean filesIsDeleted,
+                String imageFilePath, String musicFilePath, String midFilePath,
+                User user) {
         this.fileNo = fileNo;
         this.originFileName = originFileName;
         this.fileName = fileName;
         this.filesIsDeleted = filesIsDeleted;
-        this.filePath = filePath;
+        this.imageFilePath = imageFilePath;
+        this.musicFilePath = musicFilePath;
+        this.midFilePath = midFilePath;
         this.user = user;
     }
 
@@ -61,8 +72,16 @@ public class File extends AuditingFields {
         this.filesIsDeleted = filesIsDeleted;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setImageFilePath(String imageFilePath) {
+        this.imageFilePath = imageFilePath;
+    }
+
+    public void setMusicFilePath(String musicFilePath) {
+        this.musicFilePath = musicFilePath;
+    }
+
+    public void setMidFilePath(String midFilePath) {
+        this.midFilePath = midFilePath;
     }
 
     public void setUser(User user) {
