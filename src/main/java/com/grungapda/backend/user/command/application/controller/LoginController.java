@@ -2,7 +2,10 @@ package com.grungapda.backend.user.command.application.controller;
 
 import com.grungapda.backend.common.ResponseMessage;
 import com.grungapda.backend.user.command.application.dto.login.LoginRequest;
+import com.grungapda.backend.user.command.application.dto.login.LoginResponse;
+import com.grungapda.backend.user.command.application.service.FindUserService;
 import com.grungapda.backend.user.command.application.service.LoginService;
+import com.grungapda.backend.user.command.domain.aggregate.entity.Authority;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Api(tags= "Login API")
@@ -22,6 +27,7 @@ import java.util.Map;
 public class LoginController {
 
     private final LoginService loginService;
+    private final FindUserService findUserService;
 
     @ApiOperation(value = "로그인 요청")
     @PostMapping(value = "/authentication/login")
@@ -46,6 +52,36 @@ public class LoginController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ResponseMessage(HttpStatus.UNAUTHORIZED.value(), e.getMessage(), null));
+        }
+    }
+
+//    @ApiOperation(value = "전체 유저 조회")
+//    @GetMapping("/users")
+//    public ResponseEntity<ResponseMessage> findAllUsers() {
+//
+//        try {
+//            Map<String, Object> responseMap = new HashMap<>();
+//            List<LoginResponse> users = findUserService.findAllUsers();
+//            responseMap.put("users", users);
+//
+//            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK.value(), "전체 유저 조회 성공", responseMap));
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
+//        }
+//    }
+
+    @ApiOperation(value = "토큰번호로 유저 조회")
+    @GetMapping("/users/{accessToken}")
+    public ResponseEntity<ResponseMessage> findByAccessToken(@PathVariable String accessToken) {
+
+        try {
+            Map<String, Object> responseMap = new HashMap<>();
+            LoginResponse authority = findUserService.findByAccessToken(accessToken);
+            responseMap.put("authority", authority);
+
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK.value(), "단일 유저 조회 성공", responseMap));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
         }
     }
 
