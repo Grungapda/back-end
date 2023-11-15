@@ -43,11 +43,42 @@ public class User extends AuditingFields {
     @Column
     private Integer mood;
 
+    @Column
+    private Integer characterType;
+
+    @Column
+    private String hexStringCloth;
+
+    @Column
+    private String hexStringSkin;
+
+    @Column
+    private String hexStringFace;
+
+    @Column
+    private String hexStringRibbon;
+
+    @Column
+    private Boolean isCrownOn;
+
+    @Column
+    private Boolean isGlassOn;
+
+    @Column
+    private Boolean isBagOn;
+
+    @Column
+    private Boolean isCapOn;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Authority> authorities;
 
     @Builder
-    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted,Boolean musician, Integer sessionType, Integer genre, Integer mood , List<Authority> authorities) {
+    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted,
+                Boolean musician, Integer sessionType, Integer genre, Integer mood ,
+                Integer characterType, String hexStringCloth, String hexStringSkin, String hexStringFace, String hexStringRibbon,
+                Boolean isCrownOn, Boolean isGlassOn, Boolean isBagOn, Boolean isCapOn,
+                List<Authority> authorities) {
         this.userNo = userNo;
         this.userEmail = userEmail;
         this.userPwd = userPwd;
@@ -57,7 +88,52 @@ public class User extends AuditingFields {
         this.sessionType = sessionType;
         this.genre = genre;
         this.mood = mood;
+        this.characterType = characterType;
+        this.hexStringCloth = hexStringCloth;
+        this.hexStringSkin = hexStringSkin;
+        this.hexStringFace = hexStringFace;
+        this.hexStringRibbon = hexStringRibbon;
+        this.isCrownOn = isCrownOn;
+        this.isGlassOn = isGlassOn;
+        this.isBagOn = isBagOn;
+        this.isCapOn = isCapOn;
         this.authorities = authorities;
+    }
+
+    public void setCharacterType(Integer characterType) {
+        this.characterType = characterType;
+    }
+
+    public void setHexStringCloth(String hexStringCloth) {
+        this.hexStringCloth = hexStringCloth;
+    }
+
+    public void setHexStringSkin(String hexStringSkin) {
+        this.hexStringSkin = hexStringSkin;
+    }
+
+    public void setHexStringFace(String hexStringFace) {
+        this.hexStringFace = hexStringFace;
+    }
+
+    public void setHexStringRibbon(String hexStringRibbon) {
+        this.hexStringRibbon = hexStringRibbon;
+    }
+
+    public void setCrownOn(Boolean crownOn) {
+        isCrownOn = crownOn;
+    }
+
+    public void setGlassOn(Boolean glassOn) {
+        isGlassOn = glassOn;
+    }
+
+    public void setBagOn(Boolean bagOn) {
+        isBagOn = bagOn;
+    }
+
+    public void setCapOn(Boolean capOn) {
+        isCapOn = capOn;
     }
 
     public void setUserPwd(String userPwd) {
@@ -68,7 +144,10 @@ public class User extends AuditingFields {
         this.userNickName = userNickName;
     }
 
-    public void deleteUser(String userEmail, String userNickName, Boolean userIsDeleted,Boolean musician,Integer sessionType, Integer genre, Integer mood ) {
+    public void deleteUser(String userEmail, String userNickName, Boolean userIsDeleted,
+                           Boolean musician,Integer sessionType, Integer genre, Integer mood,
+                           Integer characterType, String hexStringCloth, String hexStringSkin, String hexStringFace, String hexStringRibbon,
+                           Boolean isCrownOn, Boolean isGlassOn, Boolean isBagOn, Boolean isCapOn) {
         this.userEmail = userEmail;
         this.userNickName = userNickName;
         this.userIsDeleted = userIsDeleted;
@@ -76,5 +155,14 @@ public class User extends AuditingFields {
         this.sessionType = sessionType;
         this.genre = genre;
         this.mood = mood;
+        this.characterType = characterType;
+        this.hexStringCloth = hexStringCloth;
+        this.hexStringSkin = hexStringSkin;
+        this.hexStringFace = hexStringFace;
+        this.hexStringRibbon = hexStringRibbon;
+        this.isCrownOn = isCrownOn;
+        this.isGlassOn = isGlassOn;
+        this.isBagOn = isBagOn;
+        this.isCapOn = isCapOn;
     }
 }
