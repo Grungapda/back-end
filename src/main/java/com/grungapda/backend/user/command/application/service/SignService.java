@@ -74,7 +74,7 @@ public class SignService {
         // accessToken을 사용하여 사용자를 인증하고 해당 사용자의 정보를 가져옴
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         String userEmail = authentication.getName();
-        User user = userRepository.findUsersByUserNo(userNo)
+        User user = userRepository.findByUserNo(userNo)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
 
         // 권한 확인
@@ -97,7 +97,7 @@ public class SignService {
         // accessToken을 사용하여 사용자를 인증하고 해당 사용자의 정보를 가져옴
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         String userEmail = authentication.getName();
-        User user = userRepository.findUsersByUserNo(userNo)
+        User user = userRepository.findByUserNo(userNo)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
 
         // 권한 확인
@@ -126,7 +126,7 @@ public class SignService {
         // accessToken을 사용하여 사용자를 인증하고 해당 사용자의 정보를 가져옴
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         String userEmail = authentication.getName();
-        User user = userRepository.findUsersByUserNo(userNo)
+        User user = userRepository.findByUserNo(userNo)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
 
         // 권한 확인

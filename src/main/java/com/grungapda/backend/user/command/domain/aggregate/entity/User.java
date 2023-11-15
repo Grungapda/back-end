@@ -44,10 +44,11 @@ public class User extends AuditingFields {
     private Integer mood;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Authority> authorities;
+    private List<Authority> authority;
 
     @Builder
-    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted,Boolean musician, Integer sessionType, Integer genre, Integer mood , List<Authority> authorities) {
+    public User(Long userNo, String userEmail, String userPwd, String userNickName, Boolean userIsDeleted,Boolean musician,
+                Integer sessionType, Integer genre, Integer mood , List<Authority> authority) {
         this.userNo = userNo;
         this.userEmail = userEmail;
         this.userPwd = userPwd;
@@ -57,7 +58,7 @@ public class User extends AuditingFields {
         this.sessionType = sessionType;
         this.genre = genre;
         this.mood = mood;
-        this.authorities = authorities;
+        this.authority = authority;
     }
 
     public void setUserPwd(String userPwd) {
@@ -68,7 +69,11 @@ public class User extends AuditingFields {
         this.userNickName = userNickName;
     }
 
-    public void deleteUser(String userEmail, String userNickName, Boolean userIsDeleted,Boolean musician,Integer sessionType, Integer genre, Integer mood ) {
+    public void setAuthority(List<Authority> authority) {
+        this.authority = authority;
+    }
+
+    public void deleteUser(String userEmail, String userNickName, Boolean userIsDeleted, Boolean musician, Integer sessionType, Integer genre, Integer mood ) {
         this.userEmail = userEmail;
         this.userNickName = userNickName;
         this.userIsDeleted = userIsDeleted;

@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .antMatchers("/api/v1/authentication/**").permitAll() // 로그인
                 .antMatchers("/api/v1/users/**").permitAll() // 회원
                 .antMatchers("/api/v1/users/{userNo}**").permitAll()
+                .antMatchers("/api/v1/users/{accessToken}**").permitAll()
                 .antMatchers("/api/v1/users/email/{userEmail}/check/**").permitAll()
                 .antMatchers("/api/v1/users/info/{userNo}**").permitAll()
                 .antMatchers("/api/v1/users/nickname/{userNickname}/check/**").permitAll()
