@@ -82,7 +82,9 @@ public class SignService {
             throw new AccessDeniedException("권한이 없습니다.");
         }
 
-        user.deleteUser(null, "탈퇴한 사용자입니다.", true, null,null, null, null);
+        user.deleteUser(null, "탈퇴한 사용자입니다.", true, null,null, null, null,
+                null, null, null, null, null, null, null, null,
+                null);
     }
 
     // 비밀번호 변경

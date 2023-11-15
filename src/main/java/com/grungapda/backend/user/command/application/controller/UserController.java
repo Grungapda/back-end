@@ -4,7 +4,9 @@ import com.grungapda.backend.common.ResponseMessage;
 import com.grungapda.backend.user.command.application.dto.sign.SignRequest;
 import com.grungapda.backend.user.command.application.dto.update.UpdateInfoRequest;
 import com.grungapda.backend.user.command.application.dto.update.UpdatePwdRequest;
+import com.grungapda.backend.user.command.application.dto.update.UserCustomDTO;
 import com.grungapda.backend.user.command.application.service.SignService;
+import com.grungapda.backend.user.command.application.service.UserCustomService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import javax.validation.Valid;
 public class UserController {
 
     private final SignService signService;
+    private final UserCustomService userCustomService;
 
     @ApiOperation(value = "회원가입")
     @PostMapping(value = "/users")
@@ -104,4 +107,18 @@ public class UserController {
                     .body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
         }
     }
+
+    @ApiOperation(value = "회원 커스터마이징 정보 변경")
+    @PostMapping(value = "/users/customize")
+    public ResponseEntity<ResponseMessage> updateUserCustom(@RequestBody UserCustomDTO userCustomDTO){
+        try {
+            userCustomService.updateUser(userCustomDTO);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseMessage(HttpStatus.OK.value(), "회원 커스터마이징이 저장되었습니다.", null));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
+        }
+    }
+
 }
