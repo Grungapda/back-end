@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,71 +21,44 @@ public class File extends AuditingFields {
     private Long fileNo;
 
     @Column
-    private String originFileName;
+    private String songTitle;
+    @Column
+    private String songArtist;
+    @Column
+    private String needSession;
 
     @Column
-    private String fileName;
+    private String imageFileUrl;
 
     @Column
-    private Boolean filesIsDeleted;
+    private String musicFileUrl;
 
     @Column
-    private String imageFilePath;
+    private String midFileUrl;
 
+    @OneToMany
     @Column
-    private String musicFilePath;
-
-    @Column
-    private String midFilePath;
+    private List<Participant> participantList;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_no")
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_no")
+//    private User user;
 
     @Builder
-    public File(Long fileNo, String originFileName, String fileName, Boolean filesIsDeleted,
-                String imageFilePath, String musicFilePath, String midFilePath,
-                User user) {
+    public File(Long fileNo, String songTitle, String songArtist, String needSession,
+                String imageFileUrl, String musicFileUrl, String midFileUrl,
+                List<Participant> participantList
+                ) {
         this.fileNo = fileNo;
-        this.originFileName = originFileName;
-        this.fileName = fileName;
-        this.filesIsDeleted = filesIsDeleted;
-        this.imageFilePath = imageFilePath;
-        this.musicFilePath = musicFilePath;
-        this.midFilePath = midFilePath;
-        this.user = user;
+        this.songTitle = songTitle;
+        this.songArtist = songArtist;
+        this.needSession = needSession;
+        this.imageFileUrl = imageFileUrl;
+        this.musicFileUrl = musicFileUrl;
+        this.midFileUrl = midFileUrl;
+        this.participantList = participantList;
     }
 
-    public void setFileNo(Long fileNo) {
-        this.fileNo = fileNo;
-    }
 
-    public void setOriginFileName(String originFileName) {
-        this.originFileName = originFileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public void setFilesIsDeleted(Boolean filesIsDeleted) {
-        this.filesIsDeleted = filesIsDeleted;
-    }
-
-    public void setImageFilePath(String imageFilePath) {
-        this.imageFilePath = imageFilePath;
-    }
-
-    public void setMusicFilePath(String musicFilePath) {
-        this.musicFilePath = musicFilePath;
-    }
-
-    public void setMidFilePath(String midFilePath) {
-        this.midFilePath = midFilePath;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
