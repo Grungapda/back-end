@@ -28,13 +28,5 @@ public class CreateFile {
 
     private List<Participant> participantList;
 
-    public CreateFile(File file) {
-        this.songTitle = file.getSongTitle();
-        this.songArtist = file.getSongArtist();
-        this.needSession = file.getNeedSession();
-        this.imageFileUrl = file.getImageFileUrl();
-        this.musicFileUrl = file.getMusicFileUrl();
-        this.midFileUrl = file.getMidFileUrl();
-        this.participantList = file.getParticipantList();
-    }
+
 }
