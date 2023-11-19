@@ -36,19 +36,13 @@ public class File extends AuditingFields {
     @Column
     private String midFileUrl;
 
-    @OneToMany
-    @Column
-    private List<Participant> participantList;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_no")
-//    private User user;
+
 
     @Builder
     public File(Long fileNo, String songTitle, String songArtist, String needSession,
-                String imageFileUrl, String musicFileUrl, String midFileUrl,
-                List<Participant> participantList
+                String imageFileUrl, String musicFileUrl, String midFileUrl
                 ) {
         this.fileNo = fileNo;
         this.songTitle = songTitle;
@@ -57,7 +51,6 @@ public class File extends AuditingFields {
         this.imageFileUrl = imageFileUrl;
         this.musicFileUrl = musicFileUrl;
         this.midFileUrl = midFileUrl;
-        this.participantList = participantList;
     }
 
 
