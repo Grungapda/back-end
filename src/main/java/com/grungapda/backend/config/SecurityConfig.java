@@ -51,10 +51,10 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // 단순 접근
                 .antMatchers("/api/v1/authentication/**").permitAll() // 로그인
-                .antMatchers("/api/v1/users/**").permitAll() // 회원
-                .antMatchers("/api/v1/users/{userNo}**").permitAll()
+                .antMatchers("/api/v1/users/byUserNo/{userNo}**").permitAll() // 회원 번호로 조회
                 .antMatchers("/api/v1/fileUpload/**").permitAll()
-                .antMatchers("/api/v1/users/{accessToken}**").permitAll()
+                .antMatchers("/api/v1/customize/**").permitAll()
+                .antMatchers("/api/v1/users/byToken/{accessToken}**").permitAll() // 토큰으로 조회
                 .antMatchers("/api/v1/users/email/{userEmail}/check/**").permitAll()
                 .antMatchers("/api/v1/users/info/{userNo}**").permitAll()
                 .antMatchers("/api/v1/users/nickname/{userNickname}/check/**").permitAll()

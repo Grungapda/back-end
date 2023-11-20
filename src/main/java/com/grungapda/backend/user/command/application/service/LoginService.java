@@ -69,6 +69,15 @@ public class LoginService {
                 .sessionType(user.getSessionType())
                 .genre(user.getGenre())
                 .mood(user.getMood())
+                .characterType(user.getCharacterType())
+                .hexStringCloth(user.getHexStringCloth())
+                .hexStringSkin(user.getHexStringSkin())
+                .hexStringFace(user.getHexStringFace())
+                .hexStringRibbon(user.getHexStringRibbon())
+                .isCrownOn(user.getIsCrownOn())
+                .isGlassOn(user.getIsGlassOn())
+                .isBagOn(user.getIsBagOn())
+                .isCapOn(user.getIsCapOn())
                 .authority(Collections.singletonList(authResponse))
                 .build());
         resultMap.put("refreshToken", refreshToken);

@@ -55,23 +55,23 @@ public class LoginController {
         }
     }
 
-//    @ApiOperation(value = "전체 유저 조회")
-//    @GetMapping("/users")
-//    public ResponseEntity<ResponseMessage> findAllUsers() {
-//
-//        try {
-//            Map<String, Object> responseMap = new HashMap<>();
-//            List<LoginResponse> users = findUserService.findAllUsers();
-//            responseMap.put("users", users);
-//
-//            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK.value(), "전체 유저 조회 성공", responseMap));
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
-//        }
-//    }
+    @ApiOperation(value = "유저 번호로 조회")
+    @GetMapping("/users/byUserNo/{userNo}")
+    public ResponseEntity<ResponseMessage> findByUserNo(@PathVariable Long userNo) {
 
-    @ApiOperation(value = "토큰번호로 유저 조회")
-    @GetMapping("/users/{accessToken}")
+        try {
+            Map<String, Object> responseMap = new HashMap<>();
+            LoginResponse users = findUserService.findByUserNo(userNo);
+            responseMap.put("users", users);
+
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK.value(), "유저 조회 성공", responseMap));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
+        }
+    }
+
+    @ApiOperation(value = "토큰으로 유저 조회")
+    @GetMapping("/users/byToken/{accessToken}")
     public ResponseEntity<ResponseMessage> findByAccessToken(@PathVariable String accessToken) {
 
         try {
@@ -79,7 +79,7 @@ public class LoginController {
             LoginResponse authority = findUserService.findByAccessToken(accessToken);
             responseMap.put("authority", authority);
 
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK.value(), "단일 유저 조회 성공", responseMap));
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK.value(), "토큰으로 유저 조회 성공", responseMap));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
         }
