@@ -34,7 +34,7 @@ public class LoginResponse {
         this.sessionType = user.getSessionType();
         this.genre = user.getGenre();
         this.mood = user.getMood();
-        this.authority = user.getAuthority().stream().map(AuthResponse::fromEntity)
+        this.authority = user.getAuthorities().stream().map(AuthResponse::fromEntity)
                 .collect(Collectors.toList());
     }
 

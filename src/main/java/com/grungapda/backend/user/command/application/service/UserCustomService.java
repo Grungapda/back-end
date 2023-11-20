@@ -14,7 +14,7 @@ public class UserCustomService {
     private UserRepository userRepository;
 
     public User updateUser(UserCustomDTO updatedUser){
-        User existingEntity = userRepository.findUsersByUserNo(updatedUser.getUserNo()).orElse(null);
+        User existingEntity = userRepository.findByUserNo(updatedUser.getUserNo()).orElse(null);
 
         if (existingEntity != null){
             existingEntity.setCharacterType(updatedUser.getCharacterType());
