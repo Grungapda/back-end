@@ -4,6 +4,7 @@ import com.grungapda.backend.aws.command.service.AwsS3Service;
 import com.grungapda.backend.common.ResponseMessage;
 import com.grungapda.backend.file.command.application.DTO.CreateFile;
 import com.grungapda.backend.file.command.application.DTO.FileRequest;
+import com.grungapda.backend.file.command.application.DTO.ParticipantDTO;
 import com.grungapda.backend.file.command.application.service.FileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,19 +16,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(tags = "music file upload API")
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"클라이언트 IP","*"})
+@CrossOrigin(origins = {"http://192.168.56.1","*"})
 @Slf4j
 public class FileController {
 
     private final AwsS3Service awsS3Service;
     private final FileService fileService;
 
+    @CrossOrigin("*")
     @ApiOperation(value = "음악 저장")
     @PostMapping(value = "/fileUpload"
             )
@@ -36,10 +39,10 @@ public class FileController {
             @RequestPart List<MultipartFile> fileList
 
             ){
+
         try {
 
-            log.info("fileRequest :: {}", fileRequest);
-            log.info("fileList :: {}", fileList);
+
             String imgUrl = awsS3Service.uploadFile(fileList.get(0));
             String musicUrl = awsS3Service.uploadFile(fileList.get(1));
             String midUrl = awsS3Service.uploadFile(fileList.get(2));
@@ -64,5 +67,15 @@ public class FileController {
                     .body(new ResponseMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage(), null));
         }
     }
+
+    @ApiOperation(value = "참가자 조회")
+    @PostMapping(value = "/findParticipant")
+    public List<ParticipantDTO> findParticipant(Long fileNo){
+        List<ParticipantDTO> participantDTOList = new ArrayList<>();
+        participantDTOList = fileService.findParticipantByFileNo(fileNo);
+
+        return participantDTOList;
+    }
+
 
 }
