@@ -8,8 +8,5 @@ import java.util.List;
 
 @Repository
 public interface FindUserRepository extends JpaRepository<Authority, Long> {
-
-//    List<User> findAllUsers();
-
     Authority findByAccessToken(String accessToken);
 }

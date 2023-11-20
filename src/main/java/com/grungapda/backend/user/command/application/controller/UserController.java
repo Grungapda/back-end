@@ -96,7 +96,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "회원 탈퇴")
-    @DeleteMapping(value = "/users/{userNo}")
+    @DeleteMapping(value = "/users/out/{userNo}")
     public ResponseEntity<ResponseMessage> deleteUser(@PathVariable Long userNo,
                                                       @RequestHeader("Authorization") String accessToken) {
         try {
