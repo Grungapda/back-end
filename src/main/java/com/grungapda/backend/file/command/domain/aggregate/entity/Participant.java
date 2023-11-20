@@ -16,8 +16,9 @@ public class Participant {
     @Column(name = "participant_no")
     private Long participantNo;
 
+
     @Column
-    private Integer userNo;
+    private Long userNo;
 
     @Column
     private Integer sessionType;
@@ -28,7 +29,7 @@ public class Participant {
 
 
     @Builder
-    public Participant(Long participantNo, Integer userNo, Integer sessionType, File file) {
+    public Participant(Long participantNo, Long userNo, Integer sessionType, File file) {
         this.participantNo = participantNo;
         this.userNo = userNo;
         this.sessionType = sessionType;
