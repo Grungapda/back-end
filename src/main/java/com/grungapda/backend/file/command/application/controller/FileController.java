@@ -6,6 +6,7 @@ import com.grungapda.backend.file.command.application.DTO.CreateFile;
 import com.grungapda.backend.file.command.application.DTO.FileRequest;
 import com.grungapda.backend.file.command.application.DTO.ParticipantDTO;
 import com.grungapda.backend.file.command.application.service.FileService;
+import com.grungapda.backend.file.command.domain.aggregate.entity.File;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -77,5 +78,10 @@ public class FileController {
         return participantDTOList;
     }
 
+    @ApiOperation(value = "파일 전체 조회")
+    @GetMapping(value = "/findAllfiles")
+    public List<File> findAllfiles(){
+        return fileService.findAllfiles();
+    }
 
 }

@@ -68,6 +68,12 @@ public class FileService {
         return participantDTOList;
     }
 
+    public List<File> findAllfiles(){
+        List<File> files = fileRepository.findAll();
+
+        return files;
+    }
+
 
 
 }

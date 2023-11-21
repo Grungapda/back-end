@@ -53,6 +53,8 @@ public class SecurityConfig {
                 .antMatchers("/api/v1/authentication/**").permitAll() // 로그인
                 .antMatchers("/api/v1/users/byUserNo/{userNo}**").permitAll() // 회원 번호로 조회
                 .antMatchers("/api/v1/fileUpload/**").permitAll()
+                .antMatchers("/api/v1/findAllfiles/**").permitAll()
+                .antMatchers("/api/v1/findParticipant/**").permitAll()
                 .antMatchers("/api/v1/customize/**").permitAll()
                 .antMatchers("/api/v1/users/byToken/{accessToken}**").permitAll() // 토큰으로 조회
                 .antMatchers("/api/v1/users/email/{userEmail}/check/**").permitAll()
