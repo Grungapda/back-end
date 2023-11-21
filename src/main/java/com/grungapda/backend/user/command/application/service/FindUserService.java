@@ -19,21 +19,17 @@ import java.util.Optional;
 public class FindUserService {
 
     private final FindUserRepository findUserRepository;
+    private final UserRepository userRepository;
 
-    // 전체 유저 조회
-//    @Transactional(readOnly = true)
-//    public List<LoginResponse> findAllUsers() {
-//
-//        List<User> users = findUserRepository.findAll();
-//        List<LoginResponse> userList = new ArrayList<>();
-//
-//        for (User user : users) {
-//            LoginResponse loginResponse = new LoginResponse(user);
-//            userList.add(loginResponse);
-//        }
-//
-//        return userList;
-//    }
+    // 유저 번호로 조회
+    @Transactional(readOnly = true)
+    public LoginResponse findByUserNo(Long userNo) {
+
+        Optional<User> user = userRepository.findByUserNo(userNo);
+        LoginResponse loginResponse = new LoginResponse(user);
+
+        return loginResponse;
+    }
 
     // 토큰으로 유저 조회
     @Transactional(readOnly = true)
