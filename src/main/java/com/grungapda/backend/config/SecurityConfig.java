@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // 단순 접근
                 .antMatchers("/api/v1/authentication/**").permitAll() // 로그인
+                .antMatchers("/api/v1/users/**").permitAll() // 회원가입
                 .antMatchers("/api/v1/users/byUserNo/{userNo}**").permitAll() // 회원 번호로 조회
                 .antMatchers("/api/v1/fileUpload/**").permitAll()
                 .antMatchers("/api/v1/findAllfiles/**").permitAll()
