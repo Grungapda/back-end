@@ -30,6 +30,7 @@ public class SignService {
                     .userPwd(passwordEncoder.encode(signRequest.getUserPwd()))
                     .userNickName(signRequest.getUserNickname())
                     .userIsDeleted(false)
+                    .musician(signRequest.getMusician())
                     .sessionType(signRequest.getSessionType())
                     .genre(signRequest.getGenre())
                     .mood(signRequest.getMood())
