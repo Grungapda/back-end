@@ -3,6 +3,7 @@ package com.grungapda.backend.file.command.application.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grungapda.backend.file.command.application.DTO.CreateFile;
+import com.grungapda.backend.file.command.application.DTO.FileDTO;
 import com.grungapda.backend.file.command.application.DTO.ParticipantDTO;
 import com.grungapda.backend.file.command.domain.aggregate.entity.File;
 import com.grungapda.backend.file.command.domain.aggregate.entity.Participant;
@@ -68,10 +69,23 @@ public class FileService {
         return participantDTOList;
     }
 
-    public List<File> findAllfiles(){
+    public List<FileDTO> findAllfiles(){
         List<File> files = fileRepository.findAll();
+        List<FileDTO> fileDTOList = new ArrayList<>();
+        for (int i = 0; i < files.size(); i++){
+            FileDTO fileDTOS = new FileDTO(
+                    files.get(i).getFileNo(),
+                    files.get(i).getSongTitle(),
+                    files.get(i).getSongArtist(),
+                    files.get(i).getNeedSession(),
+                    files.get(i).getImageFileUrl(),
+                    files.get(i).getMusicFileUrl(),
+                    files.get(i).getMidFileUrl()
+            );
+            fileDTOList.add(fileDTOS);
 
-        return files;
+        }
+        return fileDTOList;
     }
 
 
