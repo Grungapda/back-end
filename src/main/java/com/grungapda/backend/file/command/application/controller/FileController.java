@@ -2,9 +2,7 @@ package com.grungapda.backend.file.command.application.controller;
 
 import com.grungapda.backend.aws.command.service.AwsS3Service;
 import com.grungapda.backend.common.ResponseMessage;
-import com.grungapda.backend.file.command.application.DTO.CreateFile;
-import com.grungapda.backend.file.command.application.DTO.FileRequest;
-import com.grungapda.backend.file.command.application.DTO.ParticipantDTO;
+import com.grungapda.backend.file.command.application.DTO.*;
 import com.grungapda.backend.file.command.application.service.FileService;
 import com.grungapda.backend.file.command.domain.aggregate.entity.File;
 import io.swagger.annotations.Api;
@@ -80,8 +78,11 @@ public class FileController {
 
     @ApiOperation(value = "파일 전체 조회")
     @GetMapping(value = "/findAllfiles")
-    public List<File> findAllfiles(){
-        return fileService.findAllfiles();
+    public AllFileRequest findAllfiles(){
+        List<FileDTO> fileDTOs = fileService.findAllfiles();
+        AllFileRequest files = new AllFileRequest();
+        files.setFiles(fileDTOs);
+        return files;
     }
 
 }
